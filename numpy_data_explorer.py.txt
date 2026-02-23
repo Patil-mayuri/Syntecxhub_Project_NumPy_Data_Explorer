@@ -1,0 +1,57 @@
+import numpy as np
+import time
+
+print("===== NumPy Data Explorer Project =====")
+
+# Load Dataset
+data = np.loadtxt("student_data.csv.txt", delimiter=",", skiprows=1)
+
+print("\nFull Dataset:\n", data)
+
+# Extract Marks (Math, Science, English)
+marks = data[:, 1:4]
+
+# Indexing & Slicing
+print("\nFirst Student Marks:", marks[0])
+print("Math Marks of All Students:", marks[:, 0])
+
+# Statistical Operations
+student_avg = np.mean(marks, axis=1)
+subject_avg = np.mean(marks, axis=0)
+
+print("\nAverage Marks per Student:\n", student_avg)
+print("\nAverage per Subject (Math, Science, English):\n", subject_avg)
+
+print("\nHighest Marks in Dataset:", np.max(marks))
+print("Lowest Marks in Dataset:", np.min(marks))
+
+# Total Marks
+total_marks = np.sum(marks, axis=1)
+print("\nTotal Marks per Student:\n", total_marks)
+
+# Broadcasting (Add 5 Grace Marks)
+grace_marks = marks + 5
+print("\nAfter Adding Grace Marks:\n", grace_marks)
+
+# Reshaping
+reshaped = marks.reshape(-1)
+print("\nReshaped Data (1D):\n", reshaped)
+
+# Save and Load NumPy File
+np.save("saved_marks.npy", marks)
+loaded_marks = np.load("saved_marks.npy")
+print("\nLoaded Saved Data:\n", loaded_marks)
+
+# Performance Comparison
+start = time.time()
+list_data = [i * 2 for i in range(1000000)]
+list_time = time.time() - start
+
+start = time.time()
+numpy_data = np.arange(1000000) * 2
+numpy_time = time.time() - start
+
+print("\nPython List Time:", list_time)
+print("NumPy Time:", numpy_time)
+
+print("\n===== Project Completed Successfully =====")
