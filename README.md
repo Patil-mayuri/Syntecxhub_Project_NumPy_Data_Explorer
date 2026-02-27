@@ -27,3 +27,4 @@ It covers data loading, slicing, statistical analysis, reshaping, broadcasting, 
 pip install numpy
 python numpy_data_explorer.py
 
+
